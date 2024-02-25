@@ -54,11 +54,23 @@ export const findOrderById = async (id: string): Promise<OrderResponseDto> => {
         },
       },
       {
+        $unwind: '$vytal'
+      },
+      {
         $lookup: {
           from: 'restaurants',
-          localField: "restaurantId",
-          foreignField: "_id",
-          as: "restaurant"
+          localField: 'restaurantId',
+          foreignField: '_id',
+          as: 'restaurant'
+        }
+      },
+      {
+        $unwind: '$restaurant'
+      },
+      {
+        $project: {
+          "restaurant.password": 0,
+          "restaurant.refreshToken": 0
         }
       },
       {
@@ -67,6 +79,15 @@ export const findOrderById = async (id: string): Promise<OrderResponseDto> => {
           localField: "userId",
           foreignField: "_id",
           as: "user"
+        }
+      },
+      {
+        $unwind: '$user'
+      },
+      {
+        $project: {
+          "user.password": 0,
+          "user.refreshToken": 0
         }
       }
     ]);
@@ -95,11 +116,23 @@ export const findAllOrdersByUserId = async (id: string): Promise<OrderResponseDt
         },
       },
       {
+        $unwind: '$vytal'
+      },
+      {
         $lookup: {
           from: 'restaurants',
-          localField: "restaurantId",
-          foreignField: "_id",
-          as: "restaurant"
+          localField: 'restaurantId',
+          foreignField: '_id',
+          as: 'restaurant'
+        }
+      },
+      {
+        $unwind: '$restaurant'
+      },
+      {
+        $project: {
+          "restaurant.password": 0,
+          "restaurant.refreshToken": 0
         }
       },
       {
@@ -109,11 +142,19 @@ export const findAllOrdersByUserId = async (id: string): Promise<OrderResponseDt
           foreignField: "_id",
           as: "user"
         }
+      },
+      {
+        $unwind: '$user'
+      },
+      {
+        $project: {
+          "user.password": 0,
+          "user.refreshToken": 0
+        }
       }
     ]);
 
-    if (!order.length) throw new ApiError(401, "Order not found ");
-    return order[0];
+    return order;
   } catch (error) {
     throw new ApiError(500, "Something went wrong while finding vytal by id");
   }
@@ -136,11 +177,23 @@ export const findAllOrdersByRestaurantId = async (id: string): Promise<OrderResp
         },
       },
       {
+        $unwind: '$vytal'
+      },
+      {
         $lookup: {
           from: 'restaurants',
-          localField: "restaurantId",
-          foreignField: "_id",
-          as: "restaurant"
+          localField: 'restaurantId',
+          foreignField: '_id',
+          as: 'restaurant'
+        }
+      },
+      {
+        $unwind: '$restaurant'
+      },
+      {
+        $project: {
+          "restaurant.password": 0,
+          "restaurant.refreshToken": 0
         }
       },
       {
@@ -150,11 +203,19 @@ export const findAllOrdersByRestaurantId = async (id: string): Promise<OrderResp
           foreignField: "_id",
           as: "user"
         }
+      },
+      {
+        $unwind: '$user'
+      },
+      {
+        $project: {
+          "user.password": 0,
+          "user.refreshToken": 0
+        }
       }
     ]);
 
-    if (!order.length) throw new ApiError(401, "Order not found ");
-    return order[0];
+    return order;
   } catch (error) {
     throw new ApiError(500, "Something went wrong while finding vytal by id");
   }
@@ -163,8 +224,10 @@ export const findAllOrdersByRestaurantId = async (id: string): Promise<OrderResp
 export const createOrder = <OrderPayload>(
   values: OrderPayload
 ): Promise<OrderResponseDto> => OrderModel.create(values);
+
 export const deleteOrderById = (id: string): any =>
   OrderModel.findOneAndDelete({ _id: id });
+
 export const updateOrderById = <OrderPayload>(
   id: string,
   values: OrderPayload

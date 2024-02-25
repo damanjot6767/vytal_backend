@@ -35,11 +35,11 @@ router.route("/change-password").post(verifyUserMailJWT, changeForgetPassword);
 
 router.route("/verify-email").get(verifyUserJWT, verifyEmail);
 
-router.route('/create-order').post(verifyUserMailJWT, CreateOrderJoiValidation, createOrder);
+router.route('/create-order').post(verifyUserJWT, CreateOrderJoiValidation, createOrder);
 
-router.route('/get-all-orders').get(verifyUserMailJWT, getAllOrdersByUser)
+router.route('/get-all-orders').get(verifyUserJWT, getAllOrdersByUser)
 
-router.route('/get-order-by-id/:id').get( verifyUserMailJWT, getOrder)
+router.route('/get-order-by-id/:id').get( verifyUserJWT, getOrder)
 
 router.route("/:id").get(verifyUserJWT, getUser);
 

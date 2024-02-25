@@ -8,7 +8,6 @@ import { GetVytalByIdParamJoiValidation } from "../controllers/vytals/validation
 const router = Router();;;
 
 router.route('/create').post(
-    GetVytalByIdParamJoiValidation,
     verifyRestaurantJWT,
     CreateVytalJoiValidation,
     createVytal

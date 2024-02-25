@@ -19,6 +19,7 @@ import { verifyRestaurantJWT, verifyRestaurantMailJWT } from "../middlewares/aut
 import passport from "passport";
 import { UpdateOrderJoiValidation } from "../controllers/orders/validation/update-order-validation";
 import { getAllOrdersByRestaurant, getOrder, updateOrder } from "../controllers/orders/order-controller";
+import { GetOrderByIdParamJoiValidation } from "../controllers/orders/validation/order-param-validation";
 
 const router = Router();
 
@@ -34,7 +35,7 @@ router.route("/change-password").post(verifyRestaurantMailJWT, changeForgetPassw
 
 router.route("/verify-email").get(verifyRestaurantJWT, verifyEmail);
 
-router.route('/update-order').post(verifyRestaurantJWT, UpdateOrderJoiValidation, updateOrder);
+router.route('/update-order/:id').post(verifyRestaurantJWT, GetOrderByIdParamJoiValidation, UpdateOrderJoiValidation, updateOrder);
 
 router.route('/get-all-orders').get(verifyRestaurantJWT, getAllOrdersByRestaurant)
 

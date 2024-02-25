@@ -12,20 +12,20 @@ const UpdateOrderJoiValidation = asyncHandler(async (req, res, next) => {
                 return helpers.error('any.invalid');
             }
             return value;
-        }),
+        }).required(),
         vytalId: Joi.string().custom((value, helpers) => {
             if (!mongoose.Types.ObjectId.isValid(value)) {
                 return helpers.error('any.invalid');
             }
             return value;
-        }),
+        }).required(),
         orderId: Joi.string().custom((value, helpers) => {
             if (!mongoose.Types.ObjectId.isValid(value)) {
                 return helpers.error('any.invalid');
             }
             return value;
-        }),
-        status: Joi.string().valid(AvailableOrderStatus)
+        }).required(),
+        status: Joi.string().valid(...AvailableOrderStatus).required()
     })
 
     const { error, value } = orderObject.validate(req.body);

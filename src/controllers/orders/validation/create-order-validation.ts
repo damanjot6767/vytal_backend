@@ -19,7 +19,7 @@ const CreateOrderJoiValidation = asyncHandler(async (req, res, next) => {
             }
             return value;
         }),
-        type: Joi.string().valid(AvailableOrderType)
+        type: Joi.string().valid(...AvailableOrderType)
     })
 
     const { error, value } = orderObject.validate(req.body);

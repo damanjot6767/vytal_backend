@@ -47,8 +47,11 @@ export const findVytalById = async (id: string): Promise<VytalResponseDto> => {
                     from: 'restaurants',
                     localField: 'restaurantId',
                     foreignField: '_id',
-                    as: "restaurant"
+                    as: 'restaurant'
                 }
+            },
+            {
+                $unwind: '$restaurant'
             },
             {
                 $project: {
