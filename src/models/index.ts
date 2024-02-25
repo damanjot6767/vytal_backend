@@ -1,5 +1,5 @@
 import { UserModel } from "./user.model";
-import { ChatModel } from "./chat.model";
-import { MessageModel } from "./message.model";
+import { RestaurantModel } from "./restaurant.model";
+import { VytalModel } from "./vytal.model";
 
-export { UserModel, ChatModel, MessageModel }
+export { UserModel, RestaurantModel, VytalModel }

@@ -3,7 +3,16 @@ import { ApiResponse } from "../../utils/api-response";
 import { asyncHandler } from "../../utils/async-handler";
 import { ForgetPasswordMailOptions, RegisterMailOptions, SendMail } from "../../utils/mail";
 import { User } from "./dto/user-dto";
-import { generateTempraryToken, getAllUsersService, getUserService, handleSocialLoginService, loginService, registerService, updateUserService, changePasswordService, getUserByEmailService } from "./user-service";
+import {
+    generateTempraryToken,
+    getUserService,
+    handleSocialLoginService,
+    loginService,
+    registerService,
+    updateUserService,
+    changePasswordService,
+    getUserByEmailService
+} from "./user-service";
 
 
 const registerUser = asyncHandler(async (req, res) => {
@@ -37,36 +46,9 @@ const loginUser = asyncHandler(async (req, res) => {
         )
 })
 
-const handleSocialLogin = asyncHandler(async (req: any, res) => {
-
-    const response = await handleSocialLoginService(req.user?._id)
-
-    return res
-        .status(301)
-        .cookie("accessToken", response?.accessToken, cookieOptions)
-        .json(
-            new ApiResponse(
-                201, response, 'User login successfully'
-            )
-        )
-});
-
 const getUser = asyncHandler(async (req, res) => {
 
     const response = await getUserService(req.user._id || req.params?.id)
-
-    return res.
-        status(200).
-        json(
-            new ApiResponse(
-                201, response, 'User get successfully'
-            )
-        )
-})
-
-const getAllUsers = asyncHandler(async (req, res) => {
-
-    const response = await getAllUsersService()
 
     return res.
         status(200).
@@ -89,6 +71,20 @@ const updateUser = asyncHandler(async (req, res) => {
             )
         )
 })
+
+const handleSocialLogin = asyncHandler(async (req: any, res) => {
+
+    const response = await handleSocialLoginService(req.user?._id)
+
+    return res
+        .status(301)
+        .cookie("accessToken", response?.accessToken, cookieOptions)
+        .json(
+            new ApiResponse(
+                201, response, 'User login successfully'
+            )
+        )
+});
 
 const confirmMail = asyncHandler(async (req, res) => {
 
@@ -172,7 +168,6 @@ export {
     getUser,
     updateUser,
     handleSocialLogin,
-    getAllUsers,
     confirmMail,
     forgetPassword,
     changeForgetPassword,

@@ -1,5 +1,5 @@
 import userRouter from './user-route'
-import chatRouter from './chat-route'
-import messageRouter from './message-route'
+import restaurantRouter from './restaurant-route'
+import vytalRouter from './vytal-route'
 
-export { userRouter, chatRouter, messageRouter }
+export { userRouter, restaurantRouter, vytalRouter }

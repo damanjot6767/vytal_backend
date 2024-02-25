@@ -32,6 +32,13 @@ export const cookieOptions = {
   secure: false, // Adjust this based on your environment (e.g., use `true` in production with HTTPS)
 };
 
+export enum UserType {
+  ADMIN= "admin",
+  USER= "user",
+};
+
+export const AvailableUserType = Object.values(UserType);
+
 export enum UserLoginType {
   GOOGLE= "GOOGLE",
   GITHUB= "GITHUB",
@@ -40,12 +47,30 @@ export enum UserLoginType {
 
 export const AvailableSocialLogins = Object.values(UserLoginType);
 
-export enum ChatType {
-  INDIVIDUAL= "INDIVIDUAL",
-  GROUP= "GROUP"
+export enum StatusType {
+  ACTIVE= "active",
+  UNACTIVE = "unActive",
+  BLOCK= "block"
 };
 
-export const AvailableChatType= Object.values(ChatType);
+export const AvailableStatusType = Object.values(StatusType);
+
+export enum OrderStatus {
+  REQUEST= "request",
+  ACCEPT= "accept",
+  DECLINE= "decline",
+  PURCHASED= "purchased",
+  RETURNED= "returned"
+}
+
+export const AvailableOrderStatus = Object.values(OrderStatus);
+
+export enum OrderType {
+  IN_PERSON= "inPerson",
+  DELIVERY= "delivery"
+}
+
+export const AvailableOrderType = Object.values(OrderType);
 
 export const swaggerOptions = {
   swaggerDefinition: {

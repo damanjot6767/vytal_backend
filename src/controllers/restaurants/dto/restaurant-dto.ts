@@ -1,11 +1,10 @@
-import { Document } from "mongoose";
 import { StatusType, UserLoginType, UserType } from "../../../constants";
 
-interface User {
+interface Restaurant {
   _id: string;
-  email: string;
-  isEmailVerified: boolean;
-  fullName: string | null;
+  email: string,
+  name: string;
+  description: boolean;
   address: {
     latitude: number | null,
     longitude: number | null,
@@ -16,18 +15,17 @@ interface User {
     country: string | null,
     postalCode: number | null,
   };
-  profileImage: string | null; // cloudinary url
-  accessToken: string | null;
-  loginType: UserLoginType;
+  isEmailVerified: string,
   status: StatusType;
   type: UserType,
+  accessToken?: string,
   createdAt: Date;
   updatedAt: Date
 }
 
-interface UserResponseDto extends User {
+interface RestaurantDto extends Restaurant {
 }
 
-export { User, UserResponseDto }
+export { Restaurant, RestaurantDto }
 
 

@@ -1,10 +1,12 @@
 import { StatusType, UserLoginType, UserType } from "../../../constants";
-import { User } from "./user-dto";
+import { Restaurant } from "./restaurant-dto";
 
-interface UpdateUserResponseDto extends User {}
+interface UpdateUserResponseDto extends Restaurant {}
 
-interface UpdateUserDto {
-  fullName?: string | null;
+interface UpdateRestaurantDto {
+  isEmailVerified?: boolean;
+  name?: string | null;
+  description?: string | null;
   address?: {
     latitude: number | null;
     longitude: number | null;
@@ -15,8 +17,6 @@ interface UpdateUserDto {
     country: string | null;
     postalCode: number | null;
   };
-  profileImage?: string | null;
-  isEmailVerified?: boolean
 }
 
-export { UpdateUserResponseDto, UpdateUserDto };
+export { UpdateUserResponseDto, UpdateRestaurantDto };

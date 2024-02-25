@@ -5,7 +5,6 @@ interface LoginUserResponseDto extends User {
 
 interface LoginUserDto {
     email: string,
-    fullName: string,
     password: string
 }
 

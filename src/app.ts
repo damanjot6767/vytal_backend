@@ -9,7 +9,7 @@ import { passport } from "./passpost/index"
 import logger from 'morgan'
 import { initializeSocketIO } from "./socket/index";
 import { Server } from "socket.io";
-import { chatRouter, messageRouter, userRouter } from "./routes";
+import { vytalRouter, restaurantRouter, userRouter } from "./routes";
 
 const app = express();
 
@@ -47,8 +47,8 @@ app.use(logger('dev'));
 
 //-------------------Routes
 app.use("/v1/user", userRouter);
-app.use("/v1/chat", chatRouter);
-app.use("/v1/message", messageRouter);
+app.use("/v1/restaurant", restaurantRouter);
+app.use("/v1/vytal", vytalRouter);
 
 //-----------------Socket
 initializeSocketIO(io);

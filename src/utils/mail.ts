@@ -27,7 +27,7 @@ export async function SendMail(mailOptions) {
 
 
 
-export const RegisterMailOptions = async (user:User, confirmationToken: string) => {
+export const RegisterMailOptions = async (user:any, confirmationToken: string) => {
     const confirmationLink = `http://localhost:8000/v1/user/confirm-mail?token=${confirmationToken}`;
 
     try {
@@ -74,7 +74,7 @@ export const RegisterMailOptions = async (user:User, confirmationToken: string) 
     }
 };
 
-export const ForgetPasswordMailOptions = (user: User, confirmationToken: string) => {
+export const ForgetPasswordMailOptions = (user: any, confirmationToken: string) => {
 
     const confirmationLink = `http://localhost:3000/newPassword?token=${confirmationToken}`
 
